@@ -15,17 +15,18 @@ class ViewController: UIViewController {
             flipCountLabel.text = "Flip: \(flipCount)"
         }
     }
-    
+    var emojiChoices = ["👻", "🎃", "🤡", "💀", "👻", "🎃", "🤡", "💀"]
     @IBOutlet weak var flipCountLabel: UILabel!
     
-    @IBAction func touchSecondCard(_ sender: UIButton) {
-        flipCount += 1
-        flipCard(withEmoji: "🎃", on: sender)
-    }
+    @IBOutlet var cardButtons: [UIButton]!
     
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
-        flipCard(withEmoji: "👻", on: sender)
+        if let cardNumber = cardButtons.firstIndex(of: sender) {
+            flipCard(withEmoji: emojiChoices[cardNumber], on: sender)
+        } else {
+            print("No card function assigned")
+        }
     }
     
     func flipCard(withEmoji emoji: String, on button: UIButton) {
@@ -38,4 +39,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
